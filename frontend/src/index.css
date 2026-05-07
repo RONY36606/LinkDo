@@ -1,0 +1,70 @@
+:root {
+  --cyan: #00f5ff;
+  --cyan-dim: #00b8c8;
+  --cyan-dark: #003a42;
+  --ice: #a8d8ea;
+  --bg: #060d12;
+  --bg2: #0b1820;
+  --bg3: #0f2030;
+  --border: rgba(0, 245, 255, 0.18);
+  --border-bright: rgba(0, 245, 255, 0.55);
+  --text: #cce8f0;
+  --text-dim: #5a8a98;
+  --mono: 'Share Tech Mono', monospace;
+  --display: 'Orbitron', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      rgba(0, 245, 255, 0.045) 39px,
+      rgba(0, 245, 255, 0.045) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 39px,
+      rgba(0, 245, 255, 0.045) 39px,
+      rgba(0, 245, 255, 0.045) 40px
+    ),
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(0, 80, 120, 0.55) 0%, transparent 70%),
+    radial-gradient(ellipse 120% 120% at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.75) 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--mono);
+  min-height: 100vh;
+}
+
+/* Scanline overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 245, 255, 0.012) 2px,
+    rgba(0, 245, 255, 0.012) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+input, button {
+  font-family: var(--mono);
+  font-size: inherit;
+}
+
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--cyan-dark); border-radius: 2px; }
