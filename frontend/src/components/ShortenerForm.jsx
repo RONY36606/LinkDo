@@ -50,7 +50,7 @@ export default function ShortenerForm({ onResult }) {
       </div>
 
       <div className={styles.customRow}>
-        <div className={styles.prefix}>link.do/</div>
+        <div className={styles.prefix}>linkdoapp.vercel.app/</div>
         <input
           className={`${styles.input} ${styles.slug}`}
           type="text"
