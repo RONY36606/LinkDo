@@ -72,7 +72,7 @@ npm run dev
 **Frontend** (`.env`)
 ```
 VITE_API_URL=http://localhost:3001/api
-VITE_BASE_URL=https://nxlink.io
+VITE_BASE_URL=https://link.do
 ```
 
 **Backend** (`.env`)

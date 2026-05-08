@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap');
+
 :root {
   --cyan: #00f5ff;
   --cyan-dim: #00b8c8;
@@ -10,7 +12,7 @@
   --border-bright: rgba(0, 245, 255, 0.55);
   --text: #cce8f0;
   --text-dim: #5a8a98;
-  --mono: 'Share Tech Mono', monospace;
+  --mono: 'JetBrains Mono', monospace;
   --display: 'Orbitron', monospace;
 }
 
@@ -41,7 +43,6 @@ body {
   min-height: 100vh;
 }
 
-/* Scanline overlay */
 body::after {
   content: '';
   position: fixed;

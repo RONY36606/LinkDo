@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ShortenerForm from '../components/ShortenerForm'
 import ResultCard from '../components/ResultCard'
+import GlitchText from '../components/GlitchText'
 import styles from './Home.module.css'
 
 export default function Home() {
@@ -15,12 +16,16 @@ export default function Home() {
           <span className={`${styles.corner} ${styles.bl}`} />
           <span className={`${styles.corner} ${styles.br}`} />
         </div>
-        <h1 className={styles.title} data-text="CYBERNETIC URL SHORTENER">CYBERNETIC URL SHORTENER</h1>
-        <p className={styles.sub}>// Comprime. Comparte. Traza.</p>
+        <GlitchText
+          text="LinkDo"
+          as="h1"
+          className={styles.title}
+          interval={3500}
+        />
+        <p className={styles.sub}>// Acorta y comparte tus links de mejor forma.</p>
       </header>
 
       <ShortenerForm onResult={setResult} />
-
       {result && <ResultCard result={result} />}
     </div>
   )
