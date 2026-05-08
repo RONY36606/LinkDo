@@ -1,21 +1,19 @@
-// Node.js 22.5+ incluye SQLite de forma nativa en node:sqlite
-// No requiere instalar nada ni compilar código nativo
-import { DatabaseSync } from 'node:sqlite'
-import path from 'path'
-import { fileURLToPath } from 'url'
-import fs from 'fs'
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const DATA_DIR = path.join(__dirname, '../../data')
-const DB_PATH = path.join(DATA_DIR, 'linkdo.db')
+import { createClient } from '@libsql/client'
 
 let db
 
 export function initDB() {
-  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true })
+  db = createClient({
+    url: process.env.TURSO_URL,
+    authToken: process.env.TURSO_TOKEN,
+  })
 
-  db = new DatabaseSync(DB_PATH)
-  db.exec(`
+  console.log('[DB] Turso client inicializado')
+  return setupTables()
+}
+
+async function setupTables() {
+  await db.execute(`
     CREATE TABLE IF NOT EXISTS links (
       id        INTEGER PRIMARY KEY AUTOINCREMENT,
       slug      TEXT    NOT NULL UNIQUE,
@@ -24,30 +22,40 @@ export function initDB() {
       createdAt TEXT    NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now'))
     )
   `)
-  console.log('[DB] SQLite nativo inicializado en', DB_PATH)
+  console.log('[DB] Tabla links lista')
 }
 
-export function createLink({ slug, url }) {
-  db.prepare('INSERT INTO links (slug, url) VALUES (?, ?)').run(slug, url)
+export async function createLink({ slug, url }) {
+  await db.execute({
+    sql: 'INSERT INTO links (slug, url) VALUES (?, ?)',
+    args: [slug, url],
+  })
   return getLink(slug)
 }
 
-export function getLink(slug) {
-  return db.prepare('SELECT * FROM links WHERE slug = ?').get(slug)
+export async function getLink(slug) {
+  const res = await db.execute({
+    sql: 'SELECT * FROM links WHERE slug = ?',
+    args: [slug],
+  })
+  return res.rows[0] ?? null
 }
 
-export function getLinkById(id) {
-  return db.prepare('SELECT * FROM links WHERE id = ?').get(id)
+export async function getAllLinks() {
+  const res = await db.execute('SELECT * FROM links ORDER BY createdAt DESC')
+  return res.rows
 }
 
-export function getAllLinks() {
-  return db.prepare('SELECT * FROM links ORDER BY createdAt DESC').all()
+export async function incrementClicks(id) {
+  await db.execute({
+    sql: 'UPDATE links SET clicks = clicks + 1 WHERE id = ?',
+    args: [id],
+  })
 }
 
-export function incrementClicks(id) {
-  db.prepare('UPDATE links SET clicks = clicks + 1 WHERE id = ?').run(id)
-}
-
-export function deleteLink(id) {
-  db.prepare('DELETE FROM links WHERE id = ?').run(id)
+export async function deleteLink(id) {
+  await db.execute({
+    sql: 'DELETE FROM links WHERE id = ?',
+    args: [id],
+  })
 }
