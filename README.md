@@ -1,4 +1,4 @@
-# LINK.DO — Cybernetic URL Shortener
+# LINK.DO
 
 Acortador de enlaces con generador de QR integrado.  
 Stack: React + Vite (frontend) · Express + SQLite (backend)
@@ -8,7 +8,7 @@ Stack: React + Vite (frontend) · Express + SQLite (backend)
 ## Estructura
 
 ```
-nxlink/
+LinkDo/
 ├── frontend/          # React + Vite + CSS Modules
 │   └── src/
 │       ├── components/   # ShortenerForm, ResultCard, Layout
