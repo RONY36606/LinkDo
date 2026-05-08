@@ -40,7 +40,7 @@ export default function Dashboard() {
 
         {!loading && links.map(link => (
           <div key={link.id} className={styles.row}>
-            <span className={styles.slug}>link.do/{link.slug}</span>
+            <span className={styles.slug}>linkdoapp.vercel.app/{link.slug}</span>
             <span className={styles.orig}>{link.url}</span>
             <span className={styles.clicks}>{link.clicks} CLICS</span>
             <span className={styles.badge}>ACTIVO</span>
