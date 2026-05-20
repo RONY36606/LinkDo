@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0%" stop-color="#f8edeb"/>
+      <stop offset="100%" stop-color="#d8e2dc"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="360" rx="34" fill="url(#bg)"/>
+  <g transform="translate(600 175)">
+    <path d="M0 22 C-50 80,-180 95,-250 22 C-176 -42,-48 -35,0 22Z" fill="#e8aeb7" opacity="0.85"/>
+    <path d="M0 22 C50 80,180 95,250 22 C176 -42,48 -35,0 22Z" fill="#e8aeb7" opacity="0.85"/>
+    <path d="M0 22 C-20 -45,-8 -120,0 -148 C8 -120,20 -45,0 22Z" fill="#c97c80" opacity="0.85"/>
+    <path d="M0 22 C-20 88,-8 155,0 184 C8 155,20 88,0 22Z" fill="#c97c80" opacity="0.85"/>
+    <circle cx="0" cy="22" r="42" fill="#fffaf8"/>
+    <circle cx="0" cy="22" r="18" fill="#b5838d"/>
+  </g>
+  <text x="600" y="315" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" fill="#6b4f4f">Lo importante no es prometer perfecto, sino amar con responsabilidad.</text>
+</svg>
